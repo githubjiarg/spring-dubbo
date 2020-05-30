@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 服务名称 -->
+    <dubbo:application name="provider-dubbo-student"/>
+
+    <!-- 服务端口 -->
+    <dubbo:protocol name="dubbo" port="20882" />
+
+    <!-- 服务注册 -->
+    <dubbo:registry protocol="zookeeper" address="zookeeper://localhost:2181"/>
+
+    <bean id="studentService" class="org.example.service.StudentServiceImpl"/>
+
+    <!-- 接口暴漏-->
+    <dubbo:service interface="org.example.service.StudentService" ref="studentService"/>
+
+</beans>
